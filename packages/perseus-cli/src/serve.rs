@@ -149,7 +149,7 @@ fn run_server(
     });
     }
     let server_exec_path = (*exec_val).to_string();
-
+       println!("{:?}",  server_exec_path);
     // Manually run the generated binary (invoking in the right directory context
     // for good measure if it ever needs it in future)
     let child = Command::new(&server_exec_path)
