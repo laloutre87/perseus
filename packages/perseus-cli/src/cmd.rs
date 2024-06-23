@@ -136,20 +136,17 @@ pub fn run_cmd_directly(
     dir: &Path,
     envs: Vec<(&str, &str)>,
 ) -> Result<i32, ExecutionError> {
-    // The shell configurations for Windows and Unix
-    #[cfg(unix)]
-    let shell_exec = "sh";
-    #[cfg(windows)]
-    let shell_exec = "powershell";
-    #[cfg(unix)]
-    let shell_param = "-c";
-    #[cfg(windows)]
-    let shell_param = "-command";
+    
+    let cmd_parts = shell_words::split(&cmd).map_err(|err| ExecutionError::CmdParseFailed {
+        cmd: cmd.clone(),
+        source: err,
+    })?;
+    let cmd_exec = &cmd_parts[0];
 
-    let output = Command::new(shell_exec)
-        .args([shell_param, &cmd])
-        .current_dir(dir)
+    let output = Command::new(cmd_exec)
+        .args(&cmd_parts[1..])
         .envs(envs)
+        .current_dir(dir)
         .stdout(Stdio::inherit())
         .stderr(Stdio::inherit())
         .output()
