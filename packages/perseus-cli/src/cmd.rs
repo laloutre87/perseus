@@ -1,8 +1,7 @@
 use crate::errors::*;
 use console::Emoji;
 use indicatif::{ProgressBar, ProgressStyle};
-use std::io::Write;
-use std::fmt::Debug;
+use std::io::Write; 
 use std::path::Path;
 use std::process::{Command, Stdio};
 
