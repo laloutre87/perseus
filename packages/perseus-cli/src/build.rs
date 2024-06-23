@@ -131,6 +131,8 @@ pub fn build_internal(
             ));
             }
             let cmds = cmds.iter().map(|s| s.as_str()).collect::<Vec<&str>>();
+                println!("{:?}",  cmds);
+            
             handle_exit_code!(run_stage(
                 cmds,
                 &wb_dir,
