@@ -141,6 +141,9 @@ pub fn run_cmd_directly(
         cmd: cmd.clone(),
         source: err,
     })?;
+
+    println!("{:?}",  cmd_parts);
+    
     let cmd_exec = &cmd_parts[0];
 
     let output = Command::new(cmd_exec)
