@@ -2,6 +2,7 @@ use crate::errors::*;
 use console::Emoji;
 use indicatif::{ProgressBar, ProgressStyle};
 use std::io::Write;
+use std::fmt::Debug;
 use std::path::Path;
 use std::process::{Command, Stdio};
 
@@ -27,6 +28,9 @@ pub fn run_cmd(
         cmd: cmd.clone(),
         source: err,
     })?;
+
+    println!("{:?}",  cmd_parts);
+    
     let cmd_exec = &cmd_parts[0];
 
     // This will NOT pipe output/errors to the console
