@@ -154,7 +154,7 @@ impl Tools {
             #[cfg(unix)]
             let (wb_path, wo_path) = (wb_path.to_string(), wo_path.to_string());
             #[cfg(windows)]
-            let (wb_path, wo_path) = (format!("& \'{}\'", wb_path), format!("& \'{}\'", wo_path));
+            let (wb_path, wo_path) = (format!("\'{}\'", wb_path), format!("\'{}\'", wo_path));
             Ok(Tools {
                 cargo_engine: global_opts.cargo_engine_path.clone(),
                 cargo_browser: global_opts.cargo_browser_path.clone(),
@@ -184,7 +184,7 @@ impl Tools {
             #[cfg(unix)]
             let (wb_path, wo_path) = paths;
             #[cfg(windows)]
-            let (wb_path, wo_path) = (format!("& \'{}\'", paths.0), format!("& \'{}\'", paths.1));
+            let (wb_path, wo_path) = (format!("\'{}\'", paths.0), format!("\'{}\'", paths.1));
 
             Ok(Tools {
                 cargo_engine: global_opts.cargo_engine_path.clone(),
